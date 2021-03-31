@@ -1,16 +1,45 @@
 <?php
 
+    declare(strict_types=1);//faz a checagem de tipo das variaveis
+
     class contaBancaria
     {
     //modificadores de acesso (public - private - protected)
-        private $banco;
+    //declaração de tipos de classe
+        /**
+         * @var string
+            */
+        private  string $banco;
+
+        /**
+         * @var string
+         */
         private $nomeTitular;
+
+        /**
+         * @var string
+         */
         private $nomeAgencia;
+
+        /**
+         * @var string
+         */
         private $numeroConta;
+
+        /**
+         * @var float
+         */
         private $saldo;
 
 //Criação construtor
-        public function __construct($banco, $nomeTitular, $nomeAgencia, $numeroConta, $saldo)
+        public function __construct
+        (
+            string $banco, 
+            string $nomeTitular, 
+            string $nomeAgencia, 
+            string $numeroConta, 
+            float $saldo
+        )
         {
             $this -> banco        = $banco;
             $this -> nomeTitular  = $nomeTitular;
@@ -20,18 +49,18 @@
         }
 
 //Criação dos Métodos
-        public function obterSaldo()
+        public function obterSaldo() : string
         {
             return 'Seu saldo atual é: R$'.$this->saldo;
         }
 
-        public function depositar($valor)
+        public function depositar(float $valor) : string
         {
             $this -> saldo += $valor;
             return 'Deposito de R$'.$valor.' realizado com sucesso';
         }
 
-        public function sacar($valor)
+        public function sacar(float $valor) : string
         {
             $this -> saldo -= $valor; 
             return 'Saque de R$'.$valor.' realizado com sucesso';
@@ -45,20 +74,11 @@
         'Leonardo Barcellos',//nomeTitular
         '8244',//nomeAgencia
         '573854-10',//numeroConta
-        0//saldo
-    );
-    var_dump($conta);
-    $conta2 = new contaBancaria(
-        'Caixa Economica',//banco
-        'Joana Silva',//nomeTitular
-        '1762',//nomeAgencia
-        '53678-07',//numeroConta
         100.00//saldo
     );
-    var_dump($conta2);
+    var_dump($conta);
 
-
-    /*echo $conta -> obterSaldo();
+   /*echo $conta -> obterSaldo();
     echo "<br>";
     echo $conta -> depositar(300);
     echo "<br>";
@@ -68,5 +88,4 @@
     echo "<br>";
     echo $conta -> obterSaldo();
 */
-
 ?>
